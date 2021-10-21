@@ -1,0 +1,75 @@
+﻿<Window x:Class="lab1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="400" Background="#FF1A2544">
+    <Window.Resources>
+        <Style x:Key="transparentBtn" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#FFD1D1D1"></Setter>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}" >
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property ="IsMouseOver" Value="True">
+                    <Setter Property= "Background" Value="#FF2C3F72"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Window.Resources>
+    <Grid>
+        <Grid x:Name="Container" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="8*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid x:Name="NavbarDB" Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="30*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="30*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="Btn_CreateDB" Content="New DB" Grid.Column="0" Style="{StaticResource transparentBtn}" Click="Btn_CreateDB_Click" ></Button>
+                <Button x:Name="Btn_OpenDB" Content="Open DB" Grid.Column="2" Style="{StaticResource transparentBtn}" Click="Btn_OpenDB_Click"></Button>
+                <Button x:Name="Btn_SaveDB" Content="Apply changes" Grid.Column="4" Style="{StaticResource transparentBtn}" Click="Btn_SaveDB_Click"></Button>
+            </Grid>
+            <Grid Grid.Row="1" x:Name="NavbarActions" Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="30*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="30*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="Btn_AddStudent" Content="Add student" Grid.Column="0" Style="{StaticResource transparentBtn}" Click="Btn_AddStudent_Click"></Button>
+                <Button x:Name="Btn_EditSelected" Content="Edit selected" Grid.Column="2" Style="{StaticResource transparentBtn}" Click="Btn_EditSelected_Click"></Button>
+                <Button x:Name="Btn_RemoveSelected" Content="Remove selected" Grid.Column="4" Style="{StaticResource transparentBtn}" Click="Btn_RemoveSelected_Click"></Button>
+
+            </Grid>
+            <DataGrid x:Name="DataBaseDataGrid" Grid.Row="2" Background="#FF48598B" BorderThickness="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="1*" Binding="{Binding Id}" Header="Id" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="5*" Binding="{Binding Fullname}" Header="Fullname" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="2*" Binding="{Binding MarkMath}" Header="Math" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="2*" Binding="{Binding MarkPhysics}" Header="Physics" IsReadOnly="True"/>
+                </DataGrid.Columns>
+
+
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
